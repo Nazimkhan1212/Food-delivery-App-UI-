@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import RestaurantCard, { withPromotedTag } from "./RestaurantCard";
-import axios from "axios";
 import { RES_API } from "../utils/constants";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router";
@@ -15,37 +14,16 @@ const Body = () => {
     restaurants?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
       ?.restaurants;
 
-  // useEffect(() => {
-  //   try {
-  //     const fetchData = async () => {
-  //       const { data } = await axios.get(RES_API);
-  //       setResList(
-  //         data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-  //           ?.restaurants
-  //       );
-  //       setFilteredList(
-  //         data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-  //           ?.restaurants
-  //       );
-  //     };
-  //     fetchData();
-  //   } catch (error) {
-  //     console.log(error.message, "error");
-  //   }
-  // }, []);
-
   useEffect(() => {
     setFilteredList(resInfo);
     setResList(resInfo);
   }, [resList, resInfo]);
   const PromotedRestaurant = withPromotedTag(RestaurantCard);
-  const { loggedInUser, setUserName } = useContext(userContext);
 
   return !resList ? (
     <Shimmer />
   ) : (
     <div className="m-4">
-      {/* <input className="border-4" value={loggedInUser} onChange={(e)=>setUserName(e.target.value)} /> */}
       <div>
         <div className="flex  justify-center items-center">
           <input
